@@ -22,12 +22,12 @@ export const Calories = ({ handleRedirect }) => {
 
   useEffect(() => {
     const savedFoodItems = JSON.parse(localStorage.getItem("foodItems"));
-    const savedTotalCalories = parseInt(localStorage.getItem("totalCalories")); // Parse as number
+    const savedTotalCalories = parseInt(localStorage.getItem("totalCalories"));
     const savedName = localStorage.getItem("name");
     if (savedFoodItems && savedTotalCalories && savedName) {
       setFoodItems(savedFoodItems);
       setTotalCalories(savedTotalCalories);
-      setName(savedName); // Add this line
+      setName(savedName); // Set the name state
     }
   }, []);
 
