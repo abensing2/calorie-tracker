@@ -7,6 +7,7 @@ import {
   ListItemText,
   Button,
 } from "@mui/material";
+import "./History.css";
 
 export const History = () => {
   const [foodItems, setFoodItems] = useState([]);
@@ -58,13 +59,25 @@ export const History = () => {
 
   return (
     <Paper style={{ padding: "1rem" }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom fontWeight="bold">
         Food log:
       </Typography>
       <List>
         <ListItem>
-          <ListItemText primary="Food" />
-          <ListItemText primary="Calorie Intake" />
+          <ListItemText
+            primary={
+              <Typography variant="body1" fontWeight="bold">
+                Food:
+              </Typography>
+            }
+          />
+          <ListItemText
+            primary={
+              <Typography variant="body1" fontWeight="bold">
+                Calorie Intake:
+              </Typography>
+            }
+          />
         </ListItem>
         {foodItems.length > 0 ? (
           foodItems.map((foodItem) => (
@@ -79,10 +92,12 @@ export const History = () => {
                     (n) => n.nutrientName === "Energy"
                   ).value + " kcal"
                 }
+                style={{ marginRight: "140px" }}
               />
               <Button
                 variant="contained"
                 onClick={() => handleDeleteFoodItem(foodItem.id)}
+                className="history-delete-button"
               >
                 Delete
               </Button>
@@ -98,11 +113,18 @@ export const History = () => {
         )}
         <ListItem>
           <ListItemText primary="Total Calories:" />
-          <ListItemText primary={totalCalories} />
+          <ListItemText
+            primary={totalCalories}
+            style={{ marginRight: "140px" }}
+          />
         </ListItem>
       </List>
       {foodItems.length > 0 && (
-        <Button variant="contained" onClick={handleClearHistory}>
+        <Button
+          variant="contained"
+          onClick={handleClearHistory}
+          className="history-clear-button" // Apply the custom class
+        >
           Clear History
         </Button>
       )}

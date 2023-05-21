@@ -12,8 +12,12 @@ import {
   InputLabel,
   Input,
   Button,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import "./Home.css";
 
 export const Home = () => {
   const settings = {
@@ -25,7 +29,10 @@ export const Home = () => {
     autoplay: true,
     autoplaySpeed: 3000,
   };
+
   const [name, setName] = useState("");
+  const [gender, setGender] = useState(""); // Added gender state
+
   const quotes = [
     "A year from now, you will wish you started today.",
     "An active mind cannot exist in an inactive body",
@@ -37,15 +44,20 @@ export const Home = () => {
     localStorage.setItem("name", newName);
     setName(newName);
   };
+
+  const handleGenderChange = (event) => {
+    setGender(event.target.value);
+  }; // Added gender change handler
+
   return (
-    <body>
+    <body className="home-body">
       <div className="App">
         <Box mx={2} my={2}>
           <Typography variant="h4" align="center" fontWeight="bold">
             Welcome to Calorie Tracker:
           </Typography>
           <Box my={2}>
-            <Typography variant="h6" align="left">
+            <Typography variant="h6" align="left" className="section-title">
               Enter your information below:
             </Typography>
           </Box>
@@ -149,13 +161,23 @@ export const Home = () => {
               </Typography>
             </Grid>
             <Grid item xs={2}>
-              <InputLabel htmlFor="gender-input" shrink></InputLabel>
-              <Input
-                id="genfer-input"
-                variant="outlined"
-                fullWidth
-                placeholder=""
-              />
+              <RadioGroup
+                id="gender-input"
+                name="gender"
+                value={gender}
+                onChange={handleGenderChange}
+              >
+                <FormControlLabel
+                  value="male"
+                  control={<Radio className="radio-button" />}
+                  label="Male"
+                />
+                <FormControlLabel
+                  value="female"
+                  control={<Radio className="radio-button" />}
+                  label="Female"
+                />
+              </RadioGroup>
             </Grid>
           </Grid>
           <br />
@@ -164,6 +186,7 @@ export const Home = () => {
           <Button
             variant="contained"
             color="primary"
+            className="get-started-button"
             component={Link}
             to="/calories"
           >
@@ -181,5 +204,3 @@ export const Home = () => {
     </body>
   );
 };
-
-//export default App;

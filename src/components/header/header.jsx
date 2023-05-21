@@ -20,6 +20,7 @@ const pages = [
   { name: "Track Your Calories", path: "/calories" },
   { name: "History", path: "/history" },
 ];
+
 export function Header() {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -44,7 +45,7 @@ export function Header() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: "purple" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -55,10 +56,10 @@ export function Header() {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
+              fontFamily: "Arial",
+              fontWeight: "bold",
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "white",
               textDecoration: "none",
             }}
           >
@@ -98,8 +99,15 @@ export function Header() {
                 <MenuItem
                   key={page.name}
                   onClick={() => handleCloseNavMenu(page)}
+                  sx={{
+                    "&:hover": {
+                      backgroundColor: "rgba(255,255,255,0.2)",
+                    },
+                  }}
                 >
-                  <Typography textAlign="center">{page.name}</Typography>
+                  <Typography textAlign="center" sx={{ fontWeight: "bold" }}>
+                    {page.name}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -114,10 +122,11 @@ export function Header() {
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
-              fontWeight: 700,
+              fontWeight: "bold",
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "white",
               textDecoration: "none",
+              textAlign: "center",
             }}
           >
             Calorie Tracker
@@ -127,16 +136,23 @@ export function Header() {
               <Button
                 key={page.name}
                 onClick={() => handleCloseNavMenu(page)}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  "&:hover": {
+                    backgroundColor: "rgba(255,255,255,0.2)",
+                  },
+                }}
               >
-                {page.name}
+                <Typography sx={{ fontWeight: "bold", textAlign: "center" }}>
+                  {page.name}
+                </Typography>
               </Button>
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Avatar />
-          </Box>
+          <Box sx={{ flexGrow: 0 }}></Box>
         </Toolbar>
       </Container>
     </AppBar>

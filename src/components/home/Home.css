@@ -1,0 +1,14 @@
+.home-body {
+  background-color: #f2e6ff;
+  margin: 0;
+  padding: 0;
+}
+
+.radio-button {
+  color: #4b0082 !important;
+}
+
+.get-started-button {
+  background-color: #4b0082 !important;
+  color: #ffffff !important;
+}

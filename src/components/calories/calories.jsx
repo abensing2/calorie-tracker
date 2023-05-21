@@ -10,10 +10,12 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Paper,
+  IconButton,
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Paper, IconButton } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import "./Calories.css"; // Import the custom CSS file
 
 export const Calories = ({ handleRedirect }) => {
   const [foodItems, setFoodItems] = useState([]);
@@ -88,27 +90,26 @@ export const Calories = ({ handleRedirect }) => {
   };
 
   return (
-    <Paper style={{ padding: "1rem" }}>
+    <Paper className="calories-paper">
+      {" "}
+      {/* Use the custom class for the Paper component */}
       <h1>Welcome, {name}!</h1>
       <Typography variant="h4" gutterBottom>
         Track Your Calories:
       </Typography>
-      <form
-        onSubmit={handleAddFood}
-        style={{ marginBottom: "1rem", display: "flex", alignItems: "center" }}
-      >
+      <form onSubmit={handleAddFood} className="calories-form">
         <TextField
           id="foodName"
           name="foodName"
           label="Enter Food:"
           variant="outlined"
-          style={{ flex: 1, marginRight: "1rem" }}
+          className="calories-textfield"
         />
         <Button
           type="submit"
           variant="contained"
           color="primary"
-          style={{ width: "5rem" }}
+          className="calories-button"
         >
           Add
         </Button>
@@ -116,7 +117,6 @@ export const Calories = ({ handleRedirect }) => {
       <Typography variant="h5" gutterBottom>
         Result:
       </Typography>
-
       {foodItems.length > 0 ? (
         <List>
           {foodItems.map((foodItem) => (
@@ -130,6 +130,7 @@ export const Calories = ({ handleRedirect }) => {
                 edge="end"
                 aria-label="delete"
                 onClick={(e) => handleDeleteFood(foodItem.fdcId, e)}
+                className="calories-delete-icon"
               >
                 <DeleteOutlineIcon />
               </IconButton>

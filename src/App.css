@@ -1,6 +1,8 @@
 .App {
   text-align: center;
+  background-color: #f2e6ff;
 }
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -13,9 +15,16 @@
   opacity: 1;
 }
 
+.home-body {
+  background-color: #f2e6ff;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   position: relative;
   z-index: 1;
+  background-color: #f2e6ff; /* Add this line to set the background color for the entire page */
 }
 
 .App-logo {
@@ -40,4 +49,27 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+/* app.css */
+
+body {
+  background-color: #f2e6ff; /* Light purple background */
+}
+
+button {
+  background-color: #6930c3; /* Dark purple button background */
+  color: #fff; /* White text color */
+}
+
+button:hover {
+  background-color: #5e21a8; /* Darker purple on hover */
+}
+
+button:active {
+  background-color: #470e65; /* Even darker purple when clicked */
+}
+
+button:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 2px #a956ff; /* Add custom focus outline */
 }

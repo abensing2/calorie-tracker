@@ -1,0 +1,48 @@
+/* Calories.css */
+
+.calories-paper {
+  padding: 1rem;
+}
+
+.calories-form {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.calories-textfield {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.calories-button {
+  background-color: #4b0082 !important;
+  color: #ffffff !important;
+
+  width: 5rem;
+}
+
+.calories-button:hover {
+  background-color: #5e21a8;
+}
+
+.calories-button:active {
+  background-color: #470e65;
+}
+
+.calories-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #a956ff;
+}
+
+.calories-delete-icon {
+  color: #6930c3;
+}
+
+.calories-delete-icon:hover {
+  color: #5e21a8;
+}
+
+.calories-delete-icon:active {
+  color: #470e65;
+}
