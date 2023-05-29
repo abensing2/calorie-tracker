@@ -6,15 +6,12 @@ import {
   List,
   ListItem,
   ListItemText,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Paper,
   IconButton,
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Calories.css"; // Import the custom CSS file
 
 export const Calories = ({ handleRedirect }) => {
@@ -26,10 +23,11 @@ export const Calories = ({ handleRedirect }) => {
     const savedFoodItems = JSON.parse(localStorage.getItem("foodItems"));
     const savedTotalCalories = parseInt(localStorage.getItem("totalCalories"));
     const savedName = localStorage.getItem("name");
+
     if (savedFoodItems && savedTotalCalories && savedName) {
       setFoodItems(savedFoodItems);
       setTotalCalories(savedTotalCalories);
-      setName(savedName); // Set the name state
+      setName(savedName);
     }
   }, []);
 
@@ -80,19 +78,23 @@ export const Calories = ({ handleRedirect }) => {
           itemToDelete.foodNutrients.find((n) => n.nutrientName === "Energy")
             .value
       );
+      localStorage.setItem("foodItems", JSON.stringify(newFoodItems));
+      localStorage.setItem(
+        "totalCalories",
+        totalCalories -
+          itemToDelete.foodNutrients.find((n) => n.nutrientName === "Energy")
+            .value
+      );
     }
   };
 
   const handleDone = () => {
-    // Save food items and total calories to localStorage
     localStorage.setItem("foodItems", JSON.stringify(foodItems));
     localStorage.setItem("totalCalories", totalCalories);
   };
 
   return (
     <Paper className="calories-paper">
-      {" "}
-      {/* Use the custom class for the Paper component */}
       <h1>Welcome, {name}!</h1>
       <Typography variant="h4" gutterBottom>
         Track Your Calories:
@@ -114,32 +116,47 @@ export const Calories = ({ handleRedirect }) => {
           Add
         </Button>
       </form>
-      <Typography variant="h5" gutterBottom>
-        Result:
-      </Typography>
-      {foodItems.length > 0 ? (
-        <List>
-          {foodItems.map((foodItem) => (
-            <ListItem key={foodItem.id}>
-              <ListItemText
-                primary={`${foodItem.description} was successfully added to your food log.`}
-                secondary={`${foodItem.brandOwner} (${foodItem.sourceCode})`}
-              />
+      <br></br>
+      <div className="food-item">
+        <Typography variant="h5" gutterBottom>
+          Result:
+        </Typography>
 
-              <IconButton
-                edge="end"
-                aria-label="delete"
-                onClick={(e) => handleDeleteFood(foodItem.fdcId, e)}
-                className="calories-delete-icon"
-              >
-                <DeleteOutlineIcon />
-              </IconButton>
-            </ListItem>
-          ))}
-        </List>
-      ) : (
-        <Typography>No food items added.</Typography>
-      )}
+        {foodItems.length > 0 ? (
+          <List>
+            {foodItems.map((foodItem) => (
+              <ListItem key={foodItem.id}>
+                <ListItemText
+                  primary={`${foodItem.description} was successfully added to your food log.`}
+                  secondary={`${foodItem.brandOwner} (${foodItem.sourceCode})`}
+                />
+                <IconButton
+                  edge="end"
+                  aria-label="delete"
+                  onClick={(e) => handleDeleteFood(foodItem.fdcId, e)}
+                  className="calories-delete-icon"
+                >
+                  <DeleteOutlineIcon />
+                </IconButton>
+              </ListItem>
+            ))}
+          </List>
+        ) : (
+          <Typography>No food items added.</Typography>
+        )}
+      </div>
+      <Button
+        variant="contained"
+        color="primary"
+        className="see-history-button"
+        component={Link}
+        to={{
+          pathname: "/history",
+          state: { name: name }, // Pass the name as a prop
+        }}
+      >
+        See History
+      </Button>
     </Paper>
   );
 };

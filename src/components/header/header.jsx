@@ -18,6 +18,7 @@ import Button from "@mui/material/Button";
 const pages = [
   { name: "Home", path: "/" },
   { name: "Track Your Calories", path: "/calories" },
+  { name: "Workouts", path: "/workouts" },
   { name: "History", path: "/history" },
 ];
 

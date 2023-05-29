@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,7 +17,6 @@ import {
   RadioGroup,
   FormControlLabel,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 import "./Home.css";
 
 export const Home = () => {
@@ -188,7 +188,10 @@ export const Home = () => {
             color="primary"
             className="get-started-button"
             component={Link}
-            to="/calories"
+            to={{
+              pathname: "/calories",
+              state: { name: name }, // Pass the name as a prop
+            }}
           >
             Get Started
           </Button>

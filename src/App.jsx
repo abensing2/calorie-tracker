@@ -13,6 +13,7 @@ import { Switch, Route } from "react-router-dom";
 import { CalorieContext } from "./state/caloriecontext";
 import { calorieReducer } from "./state/caloriereducer";
 import React, { useMemo } from "react";
+import { Workouts } from "./components/workouts/workouts";
 
 function App() {
   const [calories, dispatch] = useReducer(calorieReducer, []);
@@ -31,6 +32,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/history" element={<History />} />
             <Route path="/calories" element={<Calories />} />
+            <Route path="/workouts" element={<Workouts />} />
           </Routes>
         </CalorieContext.Provider>
       </HashRouter>
